@@ -42,7 +42,7 @@ local function mainLoop()
 end
 
 -- Create Rayfield UI
-local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/your-repo/rayfield/main/rayfield.lua"))()  -- Replace with actual Rayfield URL
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()  -- Replace with actual Rayfield URL
 Rayfield:CreateWindow("ESP Script")  -- Create a new window
 
 -- Create a toggle button for ESP
