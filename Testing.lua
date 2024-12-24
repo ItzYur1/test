@@ -87,8 +87,6 @@ local BSection = MTab:CreateSection("Main ESP")
    local RunService = game:GetService("RunService")
    local UserInputService = game:GetService("UserInputService")
    local Workspace = game:GetService("Workspace")
- 
-end
 
 -- Add highlights to players
 local function addHighlightToCharacter(player, character)
