@@ -1,0 +1,64 @@
+-- ESP Script with Rayfield Toggle in Lua
+
+local espEnabled = false  -- Toggle for ESP
+local players = {}  -- Table to hold player data
+
+-- Function to toggle ESP
+local function toggleESP()
+    espEnabled = not espEnabled
+    if espEnabled then
+        print("ESP Enabled")
+    else
+        print("ESP Disabled")
+    end
+end
+
+-- Function to draw ESP
+local function drawESP()
+    if not espEnabled then return end
+
+    for _, player in pairs(players) do
+        local playerName = player.name
+        local playerDistance = player.distance  -- Assuming distance is calculated elsewhere
+        local screenPosition = player.screenPosition  -- Assuming you have a way to get screen position
+
+        -- Draw the player's name and distance on the screen
+        drawText(screenPosition.x, screenPosition.y, playerName .. " - " .. playerDistance .. "m", {r=0, g=255, b=0})  -- Green color
+    end
+end
+
+-- Main loop
+local function mainLoop()
+    while true do
+        -- Update players data (this is just a placeholder, implement your own logic)
+        players = getPlayers()  -- Function to get current players in the game
+
+        -- Draw ESP
+        drawESP()
+
+        -- Sleep or wait for a short duration to prevent high CPU usage
+        wait(0.1)  -- Adjust the wait time as necessary
+    end
+end
+
+-- Create Rayfield UI
+local Rayfield = loadstring(game:HttpGet("https://raw.githubusercontent.com/your-repo/rayfield/main/rayfield.lua"))()  -- Replace with actual Rayfield URL
+Rayfield:CreateWindow("ESP Script")  -- Create a new window
+
+-- Create a toggle button for ESP
+Rayfield:CreateToggle({
+    Name = "Toggle ESP",
+    CurrentValue = espEnabled,
+    Flag = "espToggle",  -- Unique flag for the toggle
+    Callback = function(value)
+        espEnabled = value
+        if espEnabled then
+            print("ESP Enabled")
+        else
+            print("ESP Disabled")
+        end
+    end,
+})
+
+-- Start the main loop
+mainLoop()
